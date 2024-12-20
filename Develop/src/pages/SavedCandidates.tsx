@@ -1,3 +1,16 @@
+import React, { useEffect, useState } from 'react';
+
+// Define the type for a candidate
+interface Candidate {
+  login: string;
+  avatar_url: string;
+  location?: string;
+  email?: string;
+  company?: string;
+  html_url: string;
+}
+
+
 const SavedCandidates: React.FC<SavedCandidatesProps> = ({ savedCandidates }) => {
   return (
     <>
