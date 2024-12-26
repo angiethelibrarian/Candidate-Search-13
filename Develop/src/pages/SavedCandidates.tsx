@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+// import React { useEffect, useState } from 'react';
 
 // Define the type for a candidate
-interface Candidate {
+type Candidate= {
   login: string;
   avatar_url: string;
   location?: string;
@@ -11,7 +11,7 @@ interface Candidate {
 }
 
 
-const SavedCandidates: React.FC<SavedCandidatesProps> = ({ savedCandidates }) => {
+const SavedCandidates = ( savedCandidates: Candidate[]) => {
   return (
     <>
       <h1>Potential Candidates</h1>
