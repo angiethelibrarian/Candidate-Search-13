@@ -1,17 +1,38 @@
-// import React { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Define the type for a candidate
-type Candidate= {
+type Candidate = {
   login: string;
   avatar_url: string;
   location?: string;
   email?: string;
   company?: string;
   html_url: string;
-}
+};
 
+const SavedCandidates = () => {
+  const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
 
-const SavedCandidates = ( savedCandidates: Candidate[]) => {
+  // Load saved candidates from local storage on component mount
+  useEffect(() => {
+    const candidates = localStorage.getItem('savedCandidates');
+    if (candidates) {
+      setSavedCandidates(JSON.parse(candidates));
+    }
+  }, []);
+
+  // Save candidates to local storage
+  const saveCandidatesToLocalStorage = (candidates: Candidate[]) => {
+    localStorage.setItem('savedCandidates', JSON.stringify(candidates));
+  };
+
+  // Function to add a candidate
+  const addCandidate = (candidate: Candidate) => {
+    const updatedCandidates = [...savedCandidates, candidate];
+    setSavedCandidates(updatedCandidates);
+    saveCandidatesToLocalStorage(updatedCandidates);
+  };
+
   return (
     <>
       <h1>Potential Candidates</h1>

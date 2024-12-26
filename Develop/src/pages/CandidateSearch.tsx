@@ -18,12 +18,27 @@ const CandidateSearch = () => {
       }
     };
 
+    const loadSavedCandidates = () => {
+      const candidatesFromStorage = localStorage.getItem('savedCandidates');
+      if (candidatesFromStorage) {
+        setSavedCandidates(JSON.parse(candidatesFromStorage));
+      }
+    };
+
     fetchCandidates();
+    loadSavedCandidates(); // Load saved candidates from local storage
   }, []);
+
+  const saveCandidatesToLocalStorage = (candidates: Candidate[]) => {
+    localStorage.setItem('savedCandidates', JSON.stringify(candidates));
+  };
 
   const handleSaveCandidate = () => {
     if (candidates[currentIndex]) {
-      setSavedCandidates([...savedCandidates, candidates[currentIndex]]);
+      const candidateToSave = candidates[currentIndex];
+      const updatedSavedCandidates = [...savedCandidates, candidateToSave];
+      setSavedCandidates(updatedSavedCandidates);
+      saveCandidatesToLocalStorage(updatedSavedCandidates); // Save to local storage
       setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, candidates.length - 1));
     }
   };
@@ -45,7 +60,7 @@ const CandidateSearch = () => {
           <p>Location: {currentCandidate.location || 'N/A'}</p>
           <p>Email: {currentCandidate.email || 'N/A'}</p>
           <p>Company: {currentCandidate.company || 'N/A'}</p>
-          <button onClick={handleSaveCandidate} disabled={savedCandidates.includes(currentCandidate)}>+</button>
+          <button onClick={handleSaveCandidate} disabled={savedCandidates.some(candidate => candidate.login === currentCandidate.login)}>+</button>
           <button onClick={handleNextCandidate}>-</button>
         </div>
       ) : (
