@@ -103,16 +103,18 @@ const SavedCandidates = () => {
     <>
       <h1>Potential Candidates</h1>
       {savedCandidates.length > 0 ? (
-        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+        <table style={{ 
+          borderCollapse: 'collapse', width: '100%', tableLayout: 'fixed', margin: '20px 0'
+          }}>
           <thead>
             <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Location</th>
-              <th>Email</th>
-              <th>Company</th>
-              <th>Bio</th>
-              <th>Reject</th>
+              <th style={{ padding: '10px' }}>Image</th>
+              <th style={{ padding: '10px' }}>Name</th>
+              <th style={{ padding: '10px' }}>Location</th>
+              <th style={{ padding: '10px' }}>Email</th>
+              <th style={{ padding: '10px' }}>Company</th>
+              <th style={{ padding: '10px' }}>Bio</th>
+              <th style={{ padding: '10px' }}>Reject</th>
             </tr>
           </thead>
           <tbody>
