@@ -4,19 +4,16 @@
 
 ## Table of Contents
 
+- [Description] (#description)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
+- [Notes](#notes)
 - [Questions](#questions)
-- [Tests](#tests)
 
 ## Description
 
 This Candidate Search Application allows employers to review potential candidates and save their profiles to a list of potential hires. Employers can view candidate details like name, username, location, avatar, email, company, and GitHub profile URL. Users can save or skip candidates, and the app ensures data persistence across sessions.
-
-## Deployed Website Link
-
-- 
 
 ## Installation
 
@@ -40,7 +37,6 @@ See more information to contact Angelica Mora.
 - Stackoverflow - https://stackoverflow.com/questions/79169828/dynamically-manage-state-for-rows-in-react-table
 - https://react-bootstrap.netlify.app/docs/components/images/
 - https://stackoverflow.com/questions/18714735/bootstrap-radio-button-radio-circle-removal
-
 
 
 ## Questions
