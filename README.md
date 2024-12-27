@@ -20,8 +20,8 @@ This Candidate Search Application allows employers to review potential candidate
 
 ## Installation
 
-npm install
-npm run start
+- npm install
+- npm run start
 
 ## Usage
 
@@ -34,9 +34,9 @@ From the potential candidates view the list of saved candidates, including all t
 See more information to contact Angelica Mora.
 
 # Notes: 
-- [Canva](https://www.canva.com)
-- Tutor - Charles Puente-Matos
-- [Getbootsrap.com](https://getbootstrap.com)
+- 
+- Tutor - Chris Baird
+- https://vitest.dev
 - XPertLearning Assistant - https://bootcampspot.instructure.com/courses/6651/external_tools/313
 
 
