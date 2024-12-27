@@ -1,13 +1,79 @@
 import React, { useEffect, useState } from 'react';
+import { IoRemoveCircle } from 'react-icons/io5';
 
 // Define the type for a candidate
 type Candidate = {
+  id: number;
   login: string;
   avatar_url: string;
   location?: string;
   email?: string;
   company?: string;
   html_url: string;
+  name?: string;
+  bio?: string;
+};
+
+type SavedCandidateProps = {
+  candidate: Candidate;
+  rejectCandidate: (id: number) => void;
+};
+
+const SavedCandidate = ({
+  candidate,
+  rejectCandidate,
+}: SavedCandidateProps) => {
+  return (
+    <tr>
+      {candidate ? (
+        <>
+          <td>
+            <img
+              src={`${candidate.avatar_url}`}
+              alt={`Profile of ${candidate.login}`}
+              style={{
+                width: '70px',
+                borderRadius: '10px',
+                display: 'block',
+                margin: '0 auto',
+              }}
+            />
+          </td>
+          <td>
+            <a href={candidate.html_url || ''} target='_blank' rel='noreferrer'>
+              <h3 style={{ color: 'white' }}>
+                {candidate.name || candidate.login}
+                <br />
+                <em>({candidate.login})</em>
+              </h3>
+            </a>
+          </td>
+          <td>{candidate.location || 'N/A'}</td>
+          <td>
+            <a href={`mailto:${candidate.email}`}>{candidate.email || 'N/A'}</a>
+          </td>
+          <td>{candidate.company || 'N/A'}</td>
+          <td>
+            <div style={{ maxHeight: '100px', overflowY: 'scroll' }}>
+              {candidate.bio || 'N/A'}
+            </div>
+          </td>
+          <td>
+            <IoRemoveCircle
+              style={{
+                color: 'red',
+                margin: '0 auto',
+                display: 'block',
+                cursor: 'pointer',
+                fontSize: '50px',
+              }}
+              onClick={() => rejectCandidate(candidate.id)}
+            />
+          </td>
+        </>
+      ) : null}
+    </tr>
+  );
 };
 
 const SavedCandidates = () => {
@@ -26,9 +92,9 @@ const SavedCandidates = () => {
     localStorage.setItem('savedCandidates', JSON.stringify(candidates));
   };
 
-  // Function to add a candidate
-  const addCandidate = (candidate: Candidate) => {
-    const updatedCandidates = [...savedCandidates, candidate];
+  // Function to reject a candidate
+  const rejectCandidate = (id: number) => {
+    const updatedCandidates = savedCandidates.filter((candidate) => candidate.id !== id);
     setSavedCandidates(updatedCandidates);
     saveCandidatesToLocalStorage(updatedCandidates);
   };
@@ -37,20 +103,28 @@ const SavedCandidates = () => {
     <>
       <h1>Potential Candidates</h1>
       {savedCandidates.length > 0 ? (
-        <ul>
-          {savedCandidates.map((candidate, index) => (
-            <li key={index}>
-              <img src={candidate.avatar_url} alt={`${candidate.login}'s avatar`} width={50} />
-              <div>
-                <h2>{candidate.login}</h2>
-                <p>Location: {candidate.location || 'N/A'}</p>
-                <p>Email: {candidate.email || 'N/A'}</p>
-                <p>Company: {candidate.company || 'N/A'}</p>
-                <a href={candidate.html_url} target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Email</th>
+              <th>Company</th>
+              <th>Bio</th>
+              <th>Reject</th>
+            </tr>
+          </thead>
+          <tbody>
+            {savedCandidates.map((candidate) => (
+              <SavedCandidate
+                key={candidate.id}
+                candidate={candidate}
+                rejectCandidate={rejectCandidate}
+              />
+            ))}
+          </tbody>
+        </table>
       ) : (
         <p>No candidates have been accepted yet.</p>
       )}
