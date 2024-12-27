@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoRemoveCircle } from 'react-icons/io5';
 
 // Define the type for a candidate
@@ -104,7 +104,10 @@ const SavedCandidates = () => {
       <h1>Potential Candidates</h1>
       {savedCandidates.length > 0 ? (
         <table style={{ 
-          borderCollapse: 'collapse', width: '100%', tableLayout: 'fixed', margin: '20px 0'
+          borderCollapse: 'collapse', 
+          width: '100%', 
+          tableLayout: 'fixed', 
+          margin: '20px 0'
           }}>
           <thead>
             <tr>
