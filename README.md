@@ -34,10 +34,13 @@ From the potential candidates view the list of saved candidates, including all t
 See more information to contact Angelica Mora.
 
 # Notes: 
-- 
 - Tutor - Chris Baird
-- https://vitest.dev
 - XPertLearning Assistant - https://bootcampspot.instructure.com/courses/6651/external_tools/313
+- https://react-icons.github.io/react-icons/icons/io5/
+- Stackoverflow - https://stackoverflow.com/questions/79169828/dynamically-manage-state-for-rows-in-react-table
+- https://react-bootstrap.netlify.app/docs/components/images/
+- https://stackoverflow.com/questions/18714735/bootstrap-radio-button-radio-circle-removal
+
 
 
 ## Questions
